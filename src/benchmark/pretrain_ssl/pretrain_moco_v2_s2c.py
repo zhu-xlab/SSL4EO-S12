@@ -333,9 +333,10 @@ def main_worker(gpu, ngpus_per_node, args):
         ], p=0.8),
         cvtransforms.RandomApply([ToGray(n_channels)], p=0.2),
         cvtransforms.RandomApply([loader.GaussianBlur([.1, 2.])], p=0.5),
-        cvtransforms.RandomHorizontalFlip(),
-        cvtransforms.RandomApply([RandomChannelDrop(min_n_drop=1, max_n_drop=6)], p=0.5),        
-        cvtransforms.ToTensor()])
+        cvtransforms.RandomHorizontalFlip(),       
+        cvtransforms.ToTensor()
+        #cvtransforms.RandomApply([RandomChannelDrop(min_n_drop=1, max_n_drop=6)], p=0.5),        
+        ])
     
 
     train_dataset = LMDBDataset(

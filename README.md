@@ -1,11 +1,9 @@
 # SSL4EO-S12
-SSL4EO-S12: a large-scale dataset for self-supervised learning in Earth observation
+SSL4EO-S12: a large-scale mutilmodal multitemporal dataset for self-supervised learning in Earth observation
 
 TODOs:
 - [ ] add data link (mediaTUM)
-- [ ] add codes for data2vec
-- [ ] add codes for segmentation
-- [ ] add codes for additional experiments
+- [ ] add pre-trained weights
 - [ ] organize the codes
 
 
