@@ -19,9 +19,10 @@ The pre-trained models with different SSL methods are provided as follows (13 ba
 
 Other pre-trained models:
 
-| SSL method |   Arch   | Input channels |                                                           Download                                                           |          |      |
-|:----------:|:--------:|----------------|:----------------------------------------------------------------------------------------------------------------------------:|:--------:|:----:|
-|    MoCo    | ResNet18 | 13 bands      |             [full ckpt](https://syncandshare.lrz.de/getlink/fiLnquyqkNtaqC8kbBiMuM7R/B13_rn18_moco_0099_ckpt.pth)            | backbone | logs |
-|            | ResNet18 | RGB            | [full ckpt](https://syncandshare.lrz.de/getlink/fiParGkEcSEB3WJPYPc19rBP/B3_rn18_moco_0099_ckpt.pth), [full ckpt ep200](https://syncandshare.lrz.de/getlink/fiYGJWR9X9r63sLjdYzeMpRy/B3_rn18_moco_0199_ckpt.pth) | backbone | logs |
-|            | ResNet50 | RGB            |             [full ckpt](https://syncandshare.lrz.de/getlink/fiYTwDhKBLM8zQr1gBqXdQvN/B3_rn50_moco_0099_ckpt.pth)            | backbone | logs |
+| SSL method |   Arch   | Input |                                                           Download                                                           |          |      |
+|:----------:|:--------:|:----------------:|:----------------------------------------------------------------------------------------------------------------------------:|:--------:|:----:|
+|    MoCo    | ResNet18 | S2-L1C 13 bands      |             [full ckpt](https://syncandshare.lrz.de/getlink/fiLnquyqkNtaqC8kbBiMuM7R/B13_rn18_moco_0099_ckpt.pth)            | backbone | logs |
+|            | ResNet18 | S2-L1C RGB            | [full ckpt](https://syncandshare.lrz.de/getlink/fiParGkEcSEB3WJPYPc19rBP/B3_rn18_moco_0099_ckpt.pth), [full ckpt ep200](https://syncandshare.lrz.de/getlink/fiYGJWR9X9r63sLjdYzeMpRy/B3_rn18_moco_0199_ckpt.pth) | backbone | logs |
+|            | ResNet50 | S2-L1C RGB            |             [full ckpt](https://syncandshare.lrz.de/getlink/fiYTwDhKBLM8zQr1gBqXdQvN/B3_rn50_moco_0099_ckpt.pth)            | backbone | logs |
+|            | ResNet50 | S1 2 bands            |             [full ckpt](https://syncandshare.lrz.de/getlink/fiGkSX6Xfdm8dpnW2K9cJMdh/B2_rn50_moco_0099_ckpt.pth)            | backbone | logs |
 
