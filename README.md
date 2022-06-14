@@ -19,8 +19,4 @@ The SSL4EO-S12 dataset is openly accessible at [mediaTUM](https://mediatum.ub.tu
 |  Data2vec  | ViT-S/16 |    90.3%    |  99.1%  |     64.8%    | [full ckpt](https://syncandshare.lrz.de/getlink/fiV5t9MAya9UiV3U729ovyPN/B13_vits16_data2vec_0099_ckpt.pth) | [backbone](https://syncandshare.lrz.de/getlink/fi8GpGpL3zXmZ6ETPDTmeLGT/B13_vits16_data2vec_0099.pth) | logs |
 
 
-TODOs:
-- [ ] add pre-trained weights
-- [ ] organize the codes
-
 
