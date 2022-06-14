@@ -1,0 +1,263 @@
+/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py:178: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py:178: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py:178: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py:178: FutureWarning: The module torch.distributed.launch is deprecated
+and will be removed in future. Use torchrun.
+Note that --use_env is set by default in torchrun.
+If your script expects `--local_rank` argument to be set, please
+change it to read from `os.environ['LOCAL_RANK']` instead. See 
+https://pytorch.org/docs/stable/distributed.html#launch-utility for 
+further instructions
+
+  warnings.warn(
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+WARNING:torch.distributed.run:
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+[W socket.cpp:401] [c10d] The server socket cannot be initialized on [::]:29500 (errno: 97 - Address family not supported by protocol).
+[W socket.cpp:401] [c10d] The server socket cannot be initialized on [::]:29500 (errno: 97 - Address family not supported by protocol).
+[W socket.cpp:401] [c10d] The server socket cannot be initialized on [::]:29500 (errno: 97 - Address family not supported by protocol).
+[W socket.cpp:401] [c10d] The server socket cannot be initialized on [::]:29500 (errno: 97 - Address family not supported by protocol).
+[W socket.cpp:401] [c10d] The server socket has failed to bind to 0.0.0.0:29500 (errno: 98 - Address already in use).
+[E socket.cpp:435] [c10d] The server socket has failed to listen on any local network address.
+[W socket.cpp:558] [c10d] The client socket cannot be initialized to connect to [localhost.localdomain]:29500 (errno: 97 - Address family not supported by protocol).
+[W socket.cpp:401] [c10d] The server socket has failed to bind to 0.0.0.0:29500 (errno: 98 - Address already in use).
+[E socket.cpp:435] [c10d] The server socket has failed to listen on any local network address.
+[W socket.cpp:401] [c10d] The server socket has failed to bind to 0.0.0.0:29500 (errno: 98 - Address already in use).
+[E socket.cpp:435] [c10d] The server socket has failed to listen on any local network address.
+[W socket.cpp:558] [c10d] The client socket cannot be initialized to connect to [localhost.localdomain]:29500 (errno: 97 - Address family not supported by protocol).
+Traceback (most recent call last):
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+Traceback (most recent call last):
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/runpy.py", line 87, in _run_code
+Traceback (most recent call last):
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 193, in <module>
+    return _run_code(code, main_globals, None,
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 193, in <module>
+    main()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 189, in main
+    exec(code, run_globals)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 193, in <module>
+    main()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 189, in main
+    main()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 189, in main
+    launch(args)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 174, in launch
+    launch(args)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 174, in launch
+    run(args)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/run.py", line 715, in run
+    launch(args)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 174, in launch
+    run(args)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/run.py", line 715, in run
+    run(args)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/run.py", line 715, in run
+    elastic_launch(
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    elastic_launch(
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 236, in launch_agent
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 236, in launch_agent
+    elastic_launch(
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    result = agent.run()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    result = f(*args, **kwargs)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 709, in run
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 236, in launch_agent
+    result = agent.run()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    result = agent.run()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    result = self._invoke_run(role)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 844, in _invoke_run
+    result = f(*args, **kwargs)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 709, in run
+    result = f(*args, **kwargs)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 709, in run
+    self._initialize_workers(self._worker_group)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    result = self._invoke_run(role)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 844, in _invoke_run
+    result = self._invoke_run(role)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 844, in _invoke_run
+    result = f(*args, **kwargs)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 678, in _initialize_workers
+    self._initialize_workers(self._worker_group)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    self._initialize_workers(self._worker_group)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    self._rendezvous(worker_group)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    result = f(*args, **kwargs)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 678, in _initialize_workers
+    result = f(*args, **kwargs)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 678, in _initialize_workers
+    result = f(*args, **kwargs)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 538, in _rendezvous
+    self._rendezvous(worker_group)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    self._rendezvous(worker_group)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    store, group_rank, group_world_size = spec.rdzv_handler.next_rendezvous()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/rendezvous/static_tcp_rendezvous.py", line 55, in next_rendezvous
+    result = f(*args, **kwargs)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 538, in _rendezvous
+    self._store = TCPStore(  # type: ignore[call-arg]
+    result = f(*args, **kwargs)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 538, in _rendezvous
+RuntimeError: The server socket has failed to listen on any local network address. The server socket cannot be initialized on [::]:29500 (errno: 97 - Address family not supported by protocol). The server socket has failed to bind to 0.0.0.0:29500 (errno: 98 - Address already in use).
+    store, group_rank, group_world_size = spec.rdzv_handler.next_rendezvous()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/rendezvous/static_tcp_rendezvous.py", line 55, in next_rendezvous
+    store, group_rank, group_world_size = spec.rdzv_handler.next_rendezvous()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/rendezvous/static_tcp_rendezvous.py", line 55, in next_rendezvous
+    self._store = TCPStore(  # type: ignore[call-arg]
+RuntimeError: The server socket has failed to listen on any local network address. The server socket cannot be initialized on [::]:29500 (errno: 97 - Address family not supported by protocol). The server socket has failed to bind to 0.0.0.0:29500 (errno: 98 - Address already in use).
+    self._store = TCPStore(  # type: ignore[call-arg]
+RuntimeError: The server socket has failed to listen on any local network address. The server socket cannot be initialized on [::]:29500 (errno: 97 - Address family not supported by protocol). The server socket has failed to bind to 0.0.0.0:29500 (errno: 98 - Address already in use).
+WARNING:torch.distributed.elastic.agent.server.api:Received 15 death signal, shutting down workers
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 9561 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 9562 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 9563 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 9564 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 9561 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 9562 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 9563 closing signal SIGTERM
+WARNING:torch.distributed.elastic.multiprocessing.api:Sending process 9564 closing signal SIGTERM
+Traceback (most recent call last):
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 709, in run
+    result = self._invoke_run(role)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 850, in _invoke_run
+    time.sleep(monitor_interval)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 60, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 9511 got signal: 15
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 236, in launch_agent
+    result = agent.run()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/metrics/api.py", line 125, in wrapper
+    result = f(*args, **kwargs)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 716, in run
+    self._shutdown(e.sigval)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/local_elastic_agent.py", line 190, in _shutdown
+    self._pcontext.close(death_sig)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 330, in close
+    self._close(death_sig=death_sig, timeout=timeout)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 720, in _close
+    handler.proc.wait(time_to_wait)
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/subprocess.py", line 1189, in wait
+    return self._wait(timeout=timeout)
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/subprocess.py", line 1911, in _wait
+    time.sleep(delay)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 60, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 9511 got signal: 15
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/tokenize.py", line 394, in open
+    encoding, lines = detect_encoding(buffer.readline)
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/tokenize.py", line 371, in detect_encoding
+    encoding = find_cookie(first)
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/tokenize.py", line 337, in find_cookie
+    match = cookie_re.match(line_string)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 60, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 9511 got signal: 15
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 193, in <module>
+    main()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 189, in main
+    launch(args)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launch.py", line 174, in launch
+    run(args)
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/run.py", line 715, in run
+    elastic_launch(
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 131, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 258, in launch_agent
+    events.record(agent.get_event_failed())
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/agent/server/api.py", line 729, in get_event_failed
+    raw_error=traceback.format_exc(),
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/traceback.py", line 167, in format_exc
+    return "".join(format_exception(*sys.exc_info(), limit=limit, chain=chain))
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/traceback.py", line 120, in format_exception
+    return list(TracebackException(
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/traceback.py", line 508, in __init__
+    self.stack = StackSummary.extract(
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/traceback.py", line 366, in extract
+    f.line
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/traceback.py", line 288, in line
+    self._line = linecache.getline(self.filename, self.lineno).strip()
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/linecache.py", line 30, in getline
+    lines = getlines(filename, module_globals)
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/linecache.py", line 46, in getlines
+    return updatecache(filename, module_globals)
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/linecache.py", line 136, in updatecache
+    with tokenize.open(fullname) as fp:
+  File "/p/software/juwelsbooster/stages/2022/software/Python/3.9.6-GCCcore-11.2.0/lib/python3.9/tokenize.py", line 400, in open
+    buffer.close()
+  File "/p/project/hai_dm4eo/wang_yi/env2/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/api.py", line 60, in _terminate_process_handler
+    raise SignalException(f"Process {os.getpid()} got signal: {sigval}", sigval=sigval)
+torch.distributed.elastic.multiprocessing.api.SignalException: Process 9511 got signal: 15
+srun: error: jwb0021: tasks 0-3: Exited with exit code 1

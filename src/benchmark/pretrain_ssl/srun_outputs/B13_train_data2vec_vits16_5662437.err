@@ -1,0 +1,11 @@
+PSI: handleAnswer: spawn to node 3001 failed: "testExecutable: stat(OMP_NUM_THREADS=1): No such file or directory"
+PSI: handleAnswer: spawn to node 3001 failed: "testExecutable: stat(OMP_NUM_THREADS=1): No such file or directory"
+PSI: handleAnswer: spawn to node 3001 failed: "testExecutable: stat(OMP_NUM_THREADS=1): No such file or directory"
+PSI: handleAnswer: spawn to node 3001 failed: "testExecutable: stat(OMP_NUM_THREADS=1): No such file or directory"
+Could not spawn 'OMP_NUM_THREADS=1' process 0: No such file or directory
+Could not spawn 'OMP_NUM_THREADS=1' process 1: No such file or directory
+Could not spawn 'OMP_NUM_THREADS=1' process 2: No such file or directory
+Could not spawn 'OMP_NUM_THREADS=1' process 3: No such file or directory
+spawnSingleExecutable: PSI_spawn() failed.
+Unable to start all processes. Aborting.
+srun: error: jwb0001: tasks 0-3: Exited with exit code 2
