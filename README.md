@@ -4,7 +4,7 @@ The SSL4EO-S12 dataset is a large-scale mutilmodal multitemporal dataset for uns
 ![ssl4eo-s12](assets/hello.png)
 
 ### Access to the dataset
-The SSL4EO-S12 dataset is openly accessible at [mediaTUM](https://mediatum.ub.tum.de/1660427). An example 100-patch subset is available [here](https://drive.google.com/file/d/1oTO34VLq5ZGeiqwDBO0FhfXLO8I5fQbU/view?usp=sharing).
+The SSL4EO-S12 dataset is openly accessible at [mediaTUM](https://mediatum.ub.tum.de/1660427). An example 100-patch subset is available [here](https://drive.google.com/file/d/1sRWcYbaWs-efXza6kw03GlJQdZHq5iRN/view?usp=sharing).
 
 ### Pre-trained models
 The pre-trained models with different SSL methods are provided as follows (13 bands of S2-L1C, 100 epochs).
