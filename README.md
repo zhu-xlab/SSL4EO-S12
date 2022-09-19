@@ -4,7 +4,9 @@ The [SSL4EO-S12 dataset](https://openreview.net/forum?id=KqgjSoreck) is a large-
 ![ssl4eo-s12](assets/hello.png)
 
 ### Access to the dataset
-The SSL4EO-S12 dataset is openly accessible at [mediaTUM](https://mediatum.ub.tum.de/1660427). An example 100-patch subset is available [here](https://drive.google.com/file/d/1sRWcYbaWs-efXza6kw03GlJQdZHq5iRN/view?usp=sharing).
+- [x] Full dataset: The full SSL4EO-S12 dataset (1.5TB, 500GB for each modality) is accessible at [mediaTUM](https://mediatum.ub.tum.de/1660427). There are some void IDs (gaps in folder names), see `data/void_ids.csv`.
+- [x] Example subset: An example 100-patch subset (600MB) is available at [Google Drive](https://drive.google.com/file/d/1sRWcYbaWs-efXza6kw03GlJQdZHq5iRN/view?usp=sharing).
+- [x] A 50k (random) RGB subset (18GB) is available at [OneDrive](). Pre-training on this random subset is expected to have ~3 points performance drop on BigEarthNet. Sample IDs see `data/50k_ids_random.csv`.
 
 ### Pre-trained models
 The pre-trained models with different SSL methods are provided as follows (13 bands of S2-L1C, 100 epochs).
@@ -29,4 +31,3 @@ Other pre-trained models:
 |            | ResNet50 | S1 SAR 2 bands            |             [full ckpt](https://drive.google.com/file/d/1gjTTWikf1qORJyFifWD1ksk9HzezqQ0b/view?usp=sharing)            | [backbone](https://drive.google.com/file/d/1E5MvVI1SnQneQXe37QAWx_B6aoTiSN24/view?usp=sharing) | logs |
 
 ### TODOs
-- [ ] The whole dataset is too big? We're working on a small subset for convenient usage. Stay tuned!
