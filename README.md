@@ -6,7 +6,7 @@ The [SSL4EO-S12 dataset](https://openreview.net/pdf?id=KqgjSoreck) is a large-sc
 ### Access to the dataset
 - [x] Full dataset: The full SSL4EO-S12 dataset (1.5TB, 500GB for each modality) is accessible at [mediaTUM](https://mediatum.ub.tum.de/1660427). There are some void IDs (gaps in folder names), see `data/void_ids.csv`.
 - [x] Example subset: An example 100-patch subset (600MB) is available at [Google Drive](https://drive.google.com/file/d/1sRWcYbaWs-efXza6kw03GlJQdZHq5iRN/view?usp=sharing).
-- [x] A 50k (random) RGB subset (18GB) is available at [OneDrive](https://smtaschool-my.sharepoint.com/:u:/g/personal/e3819_365e_live/EXdgoHlhIs5Fvd6k-SflGr0Bp824viTfDadJ86metaAssw?e=tKTYcj). Pre-training on this random subset is expected to have ~3 points performance drop on BigEarthNet. Sample IDs see `data/50k_ids_random.csv`.
+- [x] A 50k (random) RGB subset (18GB) is available at [OneDrive](https://smtaschool-my.sharepoint.com/:u:/g/personal/e3819_365e_live/EXdgoHlhIs5Fvd6k-SflGr0Bp824viTfDadJ86metaAssw?e=tKTYcj). Sample IDs see `data/50k_ids_random.csv`.
 
 ### Pre-trained models
 The pre-trained models with different SSL methods are provided as follows (13 bands of S2-L1C, 100 epochs).
