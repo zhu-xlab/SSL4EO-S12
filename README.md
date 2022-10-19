@@ -10,7 +10,7 @@ The SSL4EO-S12 dataset is a large-scale mutilmodal multitemporal dataset for uns
 - [x] A 50k (random) RGB subset (18GB) is available at [OneDrive](https://smtaschool-my.sharepoint.com/:u:/g/personal/e3819_365e_live/EXdgoHlhIs5Fvd6k-SflGr0Bp824viTfDadJ86metaAssw?e=tKTYcj). Sample IDs see `data/50k_ids_random.csv`.
 
 ### Pre-trained models
-The pre-trained models with different SSL methods are provided as follows (13 bands of S2-L1C, 100 epochs).
+The pre-trained models with different SSL methods are provided as follows (13 bands of S2-L1C, 100 epochs, input clip to [0,1]).
 
 
 | SSL method |   Arch   | BigEarthNet | EuroSAT | So2Sat-LCZ42 |                                                   Download                                                  |          |      | Usage |
