@@ -31,4 +31,10 @@ Other pre-trained models:
 |            | ResNet50 | S2-L1C RGB            |             [full ckpt](https://drive.google.com/file/d/1UEpA9sOcA47W0cmwQhkSeXfQxrL-EcJB/view?usp=sharing)            | backbone | logs |
 |            | ResNet50 | S1 SAR 2 bands            |             [full ckpt](https://drive.google.com/file/d/1gjTTWikf1qORJyFifWD1ksk9HzezqQ0b/view?usp=sharing)            | [backbone](https://drive.google.com/file/d/1E5MvVI1SnQneQXe37QAWx_B6aoTiSN24/view?usp=sharing) | logs |
 
-### TODOs
+### Citation
+```BibTeX
+@article{wangssl4eo,
+  title={SSL4EO-S12: A Large-Scale Multi-Modal, Multi-Temporal Dataset for Self-Supervised Learning in Earth Observation},
+  author={Wang, Yi and Braham, Nassim Ait Ali and Xiong, Zhitong and Liu, Chenying and Albrecht, Conrad M and Zhu, Xiao Xiang}
+}
+```
