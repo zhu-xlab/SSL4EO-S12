@@ -35,6 +35,8 @@ Other pre-trained models:
 ```BibTeX
 @article{wangssl4eo,
   title={SSL4EO-S12: A Large-Scale Multi-Modal, Multi-Temporal Dataset for Self-Supervised Learning in Earth Observation},
-  author={Wang, Yi and Braham, Nassim Ait Ali and Xiong, Zhitong and Liu, Chenying and Albrecht, Conrad M and Zhu, Xiao Xiang}
+  author={Wang, Yi and Braham, Nassim Ait Ali and Xiong, Zhitong and Liu, Chenying and Albrecht, Conrad M and Zhu, Xiao Xiang},
+  journal = {arXiv:2211.07044},
+  year = {2022}
 }
 ```
