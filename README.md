@@ -33,10 +33,10 @@ Other pre-trained models:
 
 ### Citation
 ```BibTeX
-@article{wangssl4eo,
+@article{wang2022ssl4eo,
   title={SSL4EO-S12: A Large-Scale Multi-Modal, Multi-Temporal Dataset for Self-Supervised Learning in Earth Observation},
   author={Wang, Yi and Braham, Nassim Ait Ali and Xiong, Zhitong and Liu, Chenying and Albrecht, Conrad M and Zhu, Xiao Xiang},
-  journal = {arXiv:2211.07044},
-  year = {2022}
+  journal={arXiv preprint arXiv:2211.07044},
+  year={2022}
 }
 ```
