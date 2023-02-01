@@ -31,6 +31,10 @@ Other pre-trained models:
 |            | ResNet50 | S2-L1C RGB            |             [full ckpt](https://drive.google.com/file/d/1UEpA9sOcA47W0cmwQhkSeXfQxrL-EcJB/view?usp=sharing)            | backbone | logs |
 |            | ResNet50 | S1 SAR 2 bands            |             [full ckpt](https://drive.google.com/file/d/1gjTTWikf1qORJyFifWD1ksk9HzezqQ0b/view?usp=sharing)            | [backbone](https://drive.google.com/file/d/1E5MvVI1SnQneQXe37QAWx_B6aoTiSN24/view?usp=sharing) | logs |
 
+### License
+This repository is released under the Apache 2.0 license. The dataset and pretrained model weights are released under the CC-BY-4.0 license.
+
+
 ### Citation
 ```BibTeX
 @article{wang2022ssl4eo,
