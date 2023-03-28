@@ -4,7 +4,7 @@ The SSL4EO-S12 dataset is a large-scale multimodal multitemporal dataset for uns
 ![ssl4eo-s12](assets/hello.png)
 
 ### Access to the dataset
-- [x] **Raw dataset**: The full SSL4EO-S12 dataset (1.5TB, 500GB for each modality) is accessible at [mediaTUM](https://mediatum.ub.tum.de/1660427). There are some void IDs (gaps in folder names), see `data/void_ids.csv`.
+- [x] **Raw dataset**: The full SSL4EO-S12 dataset (1.5TB, 500GB for each modality) is accessible at [mediaTUM](https://mediatum.ub.tum.de/1660427). There are some void IDs (gaps in folder names), see `data/void_ids.csv`. Center coordinates of all locations are available [here](https://drive.google.com/file/d/1RyJnGznSbMparS88BhHkXxETf0K-qYqI/view?usp=sharing).
 - [x] **Example subset**: An example 100-patch subset (600MB) is available at [Google Drive](https://drive.google.com/file/d/1sRWcYbaWs-efXza6kw03GlJQdZHq5iRN/view?usp=sharing).
 - [x] **Compressed dataset**: A compressed 8-bit version (20-50GB for each modality, including an RGB version) is available at [mediaTUM](https://mediatum.ub.tum.de/1702379). The raw 16/32-bit values are normalized by mean and std and converted to uint8. *Note: in our experiments, 8-bit input performs comparably well as 16-bit.*
 - [ ] A 50k (random) RGB subset (18GB) is available here (link broken, we are working on it). Sample IDs see `data/50k_ids_random.csv`.
