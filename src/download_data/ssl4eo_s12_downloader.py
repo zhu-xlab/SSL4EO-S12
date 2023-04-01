@@ -39,7 +39,7 @@ import numpy as np
 import rasterio
 import urllib3
 from rasterio.transform import Affine
-#from skimage.exposure import rescale_intensity
+# from skimage.exposure import rescale_intensity
 from torchvision.datasets.utils import download_and_extract_archive
 import shapefile
 from shapely.geometry import shape, Point
@@ -250,8 +250,6 @@ def get_properties(image):
     return image.getInfo()
 
 def get_patch_s1(collection, coords, radius, bands=None, crop=None):
-    if bands is None:
-        bands = RGB_BANDS
 
     image = collection.sort('system:time_start', False).first()  # get most recent
     region = ee.Geometry.Point(coords).buffer(radius).bounds() # sample region bound
@@ -342,7 +340,7 @@ def get_random_patches_grid(idx, collections, bands, crops, sampler, dates, radi
             grid_dict[gridIndex].add(new_coord)
             
     except OverlapError:
-        patches_s1, patches_s2c, patches_s2a, center_coord = get_random_patches_grid(idx, collections, bands, crops, sampler, dates, radius, debug)
+        patches_s1, patches_s2c, patches_s2a, center_coord = get_random_patches_grid(idx, collections, bands, crops, sampler, dates, radius, debug, grid_dict)
     
     
     ## random +- 15 days of random days within 1 year from the reference dates
@@ -376,7 +374,7 @@ def get_random_patches_grid(idx, collections, bands, crops, sampler, dates, radi
     except (ee.EEException, urllib3.exceptions.HTTPError) as e:
         if debug:
             print(e)
-        patches_s1, patches_s2c, patches_s2a, center_coord = get_random_patches_grid(idx, collections, bands, crops, sampler, dates, radius, debug)
+        patches_s1, patches_s2c, patches_s2a, center_coord = get_random_patches_grid(idx, collections, bands, crops, sampler, dates, radius, debug, grid_dict)
 
     return patches_s1, patches_s2c, patches_s2a, center_coord
 
@@ -465,7 +463,6 @@ def get_random_patches_match(idx, collections, bands, crops, sampler, dates, rad
     except (ee.EEException, urllib3.exceptions.HTTPError) as e:
         if debug:
             print(e)
-        #patches_s2c, center_coord = get_random_patches_match(idx, collections, bands, crops, sampler, dates, radius, debug, ext_coords, rtree_obj)
         return None, None, None, coords
 
     return patches_s1, patches_s2c, patches_s2a, center_coord
