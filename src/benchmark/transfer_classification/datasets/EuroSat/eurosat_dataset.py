@@ -10,6 +10,7 @@ import cv2
 
 EXTENSIONS = (".jpg", ".jpeg", ".png", ".ppm", ".bmp", ".pgm", ".tif", ".tiff", ".webp")
 ALL_BANDS = ['B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08', 'B09', 'B10', 'B11', 'B12', 'B8A']
+S2A_BANDS = ['B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08', 'B09', 'B11', 'B12', 'B8A']
 RGB_BANDS = ['B04', 'B03', 'B02']
 
 ### SSL4EO stats
@@ -64,6 +65,11 @@ class EurosatDataset(Dataset):
         self.transform = transform
         if bands=='B13':
             self.bands = ALL_BANDS
+        elif bands=='B12':
+            self.bands = S2A_BANDS
+        elif bands=='RGB':
+            self.bands = RGB_BANDS
+            
         self.normalize = normalize
             
         self.classes = sorted([d.name for d in self.root.iterdir() if d.is_dir()])
@@ -85,10 +91,17 @@ class EurosatDataset(Dataset):
         target = self.targets[index]
         
         with rasterio.open(path) as f:
-            array = f.read().astype(np.int16)
+            if self.bands == ALL_BANDS:
+                array = f.read().astype(np.int16)
+            elif self.bands == S2A_BANDS:
+                array = f.read((1,2,3,4,5,6,7,8,9,11,12,13)).astype(np.int16)
+            elif self.bands == RGB_BANDS:
+                array = f.read((4,3,2)).astype(np.int16)
+                            
             img = array.transpose(1, 2, 0)
 
         channels = []
+        
         for i,b in enumerate(self.bands):
             ch = img[:,:,i]
             if self.normalize:

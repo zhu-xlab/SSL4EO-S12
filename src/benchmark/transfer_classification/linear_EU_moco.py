@@ -146,7 +146,7 @@ def main():
             ])
 
 
-    eurosat_dataset = EurosatDataset(root=args.data_dir,normalize=args.normalize)
+    eurosat_dataset = EurosatDataset(root=args.data_dir,bands=args.bands,normalize=args.normalize)
 
     indices = np.arange(len(eurosat_dataset))
     train_indices, test_indices = train_test_split(indices, train_size=0.8,stratify=eurosat_dataset.targets,random_state=args.seed)    
@@ -190,8 +190,10 @@ def main():
     elif args.backbone == 'resnet18':
         net = models.resnet18(pretrained=False)
         net.fc = torch.nn.Linear(512,10)
-        
-    net.conv1 = torch.nn.Conv2d(13, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    if args.bands=='B13':    
+        net.conv1 = torch.nn.Conv2d(13, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    elif args.bands=='B12':
+        net.conv1 = torch.nn.Conv2d(12, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
 
     
     for name, param in net.named_parameters():

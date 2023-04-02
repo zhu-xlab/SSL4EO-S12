@@ -15,6 +15,7 @@ from torchmetrics import Precision, Recall, F1Score
 from datasets.oscd_datamodule import ChangeDetectionDataModule
 from models.segmentation import get_segmentation_model
 # from models.moco2_module import MocoV2
+from pytorch_lightning.callbacks.early_stopping import EarlyStopping
 
 
 def get_args():
@@ -39,57 +40,64 @@ def get_args():
     return args
 
 
+def dice_loss(out,mask,epsilon=1e-5):
+    inter = torch.dot(out.reshape(-1), mask.reshape(-1))
+    sets_sum = torch.sum(out) + torch.sum(mask)
+    return (2 * inter + epsilon) / (sets_sum + epsilon)
+
+
 class SiamSegment(LightningModule):
 
     def __init__(self, backbone, feature_indices, feature_channels):
         super().__init__()
         self.model = get_segmentation_model(backbone, feature_indices, feature_channels)
         self.criterion = BCEWithLogitsLoss()
-        self.prec = Precision(threshold=args.mth)
-        self.rec = Recall(threshold=args.mth) 
-        self.f1 = F1Score(threshold=args.mth) 
+        self.dice_loss = dice_loss
+        self.prec = Precision(task='binary',threshold=args.mth)
+        self.rec = Recall(task='binary',threshold=args.mth) 
+        self.f1 = F1Score(task='binary',threshold=args.mth) 
 
     def forward(self, x1, x2):
         return self.model(x1, x2)
 
     def training_step(self, batch, batch_idx):
         img_1, img_2, mask, pred, loss, prec, rec, f1 = self.shared_step(batch)
-        self.log('train/loss', loss, prog_bar=True)
-        self.log('train/precision', prec, on_step=False, on_epoch=True, prog_bar=True)
-        self.log('train/recall', rec, on_step=False, on_epoch=True, prog_bar=True)
-        self.log('train/f1', f1, on_step=False, on_epoch=True, prog_bar=True)
+        self.log('train/loss', loss, prog_bar=True,sync_dist=True)
+        self.log('train/precision', prec, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
+        self.log('train/recall', rec, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
+        self.log('train/f1', f1, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
         tensorboard = self.logger.experiment
         global_step = self.trainer.global_step
-        if args.nc == 3:
-            tensorboard.add_image('train/img_1', img_1[0], global_step)
-            tensorboard.add_image('train/img_2', img_2[0], global_step)
-            tensorboard.add_image('train/mask', mask[0], global_step)
-            tensorboard.add_image('train/out', pred[0], global_step)
-        else:
-            tensorboard.add_image('train/img_1', img_1[0,1:4,:,:], global_step)
-            tensorboard.add_image('train/img_2', img_2[0,1:4,:,:], global_step)
-            tensorboard.add_image('train/mask', mask[0], global_step)
-            tensorboard.add_image('train/out', pred[0], global_step)
+        #if args.nc == 3:
+        #    tensorboard.add_image('train/img_1', img_1[0], global_step)
+        #    tensorboard.add_image('train/img_2', img_2[0], global_step)
+        #    tensorboard.add_image('train/mask', mask[0], global_step)
+        #    tensorboard.add_image('train/out', pred[0], global_step)
+        #else:
+        #    tensorboard.add_image('train/img_1', img_1[0,1:4,:,:], global_step)
+        #    tensorboard.add_image('train/img_2', img_2[0,1:4,:,:], global_step)
+        #    tensorboard.add_image('train/mask', mask[0], global_step)
+        #    tensorboard.add_image('train/out', pred[0], global_step)
         return loss
 
     def validation_step(self, batch, batch_idx):
         img_1, img_2, mask, pred, loss, prec, rec, f1 = self.shared_step(batch)
-        self.log('val/loss', loss, prog_bar=True)
-        self.log('val/precision', prec, on_step=False, on_epoch=True, prog_bar=True)
-        self.log('val/recall', rec, on_step=False, on_epoch=True, prog_bar=True)
-        self.log('val/f1', f1, on_step=False, on_epoch=True, prog_bar=True)
+        self.log('val/loss', loss, prog_bar=True,sync_dist=True)
+        self.log('val/precision', prec, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
+        self.log('val/recall', rec, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
+        self.log('val/f1', f1, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
         tensorboard = self.logger.experiment
         global_step = self.trainer.global_step
-        if args.nc == 3:
-            tensorboard.add_image('val/img_1', img_1[0], global_step)
-            tensorboard.add_image('val/img_2', img_2[0], global_step)
-            tensorboard.add_image('val/mask', mask[0], global_step)
-            tensorboard.add_image('val/out', pred[0], global_step)
-        else:
-            tensorboard.add_image('val/img_1', img_1[0,1:4,:,:], global_step)
-            tensorboard.add_image('val/img_2', img_2[0,1:4,:,:], global_step)
-            tensorboard.add_image('val/mask', mask[0], global_step)
-            tensorboard.add_image('val/out', pred[0], global_step)
+        #if args.nc == 3:
+        #    tensorboard.add_image('val/img_1', img_1[0], global_step)
+        #    tensorboard.add_image('val/img_2', img_2[0], global_step)
+        #    tensorboard.add_image('val/mask', mask[0], global_step)
+        #    tensorboard.add_image('val/out', pred[0], global_step)
+        #else:
+        #    tensorboard.add_image('val/img_1', img_1[0,1:4,:,:], global_step)
+        #    tensorboard.add_image('val/img_2', img_2[0,1:4,:,:], global_step)
+        #    tensorboard.add_image('val/mask', mask[0], global_step)
+        #    tensorboard.add_image('val/out', pred[0], global_step)
         return loss
 
     def shared_step(self, batch):
@@ -97,6 +105,7 @@ class SiamSegment(LightningModule):
         out = self(img_1, img_2)
         pred = torch.sigmoid(out)
         loss = self.criterion(out, mask)
+        # + self.dice_loss(out,mask)
         prec = self.prec(pred, mask.long())
         rec = self.rec(pred, mask.long())
         f1 = self.f1(pred, mask.long())
@@ -139,9 +148,10 @@ if __name__ == '__main__':
     args = get_args()
 
     # dataloader
-    assert(args.nc==3 or args.nc==13)
+    assert(args.nc==3 or args.nc==13 or args.nc==12)
     datamodule = ChangeDetectionDataModule(args.data_dir, RGB_bands=True if args.nc==3 else False, \
-                                           BGR_bands=True if args.ckp_path else False, \
+                                           BGR_bands=False, \
+                                           S2A_bands=True if args.nc==12 else False, \
                                            value_discard=args.value_discard, \
                                            patch_size=args.patch_size, batch_size=args.batch_size)
 
@@ -183,6 +193,10 @@ if __name__ == '__main__':
     logger = TensorBoardLogger(save_dir=str(Path.cwd() / args.result_dir / 'logs'), name=experiment_name)
     dir_path=str(Path.cwd() / args.result_dir / 'ckps' / args.init_type)
     Path(dir_path).mkdir(parents=True, exist_ok=True)
-    checkpoint_callback = ModelCheckpoint(dirpath=dir_path,filename='{epoch}', save_weights_only=True)
-    trainer = Trainer(gpus=args.gpus, logger=logger, callbacks=[checkpoint_callback], max_epochs=args.ne, weights_summary='top')
+    checkpoint_callback = ModelCheckpoint(dirpath=dir_path, auto_insert_metric_name=False, filename='{epoch}-{val/loss:.2f}-{val/f1:.2f}', save_weights_only=False)
+    early_stop_callback = EarlyStopping(monitor="val/loss", mode="min")
+    lr_monitor = pl.callbacks.LearningRateMonitor(logging_interval=None)
+    
+    trainer = Trainer(accelerator='gpu', devices=4, strategy="ddp", sync_batchnorm=True, logger=logger, callbacks=[checkpoint_callback,lr_monitor], max_epochs=args.ne, enable_progress_bar=True)
     trainer.fit(model, datamodule=datamodule)
+    trainer.validate(model, datamodule=datamodule)

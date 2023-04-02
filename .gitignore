@@ -1,0 +1,7 @@
+**/.ipynb_checkpoints/*
+**/.vscode/*
+**/__pycache__/*
+**/srun_outputs/*
+**/checkpoints/*
+**/lightning_logs/
+**/results/*

@@ -15,6 +15,7 @@ from torchmetrics import Precision, Recall, F1Score
 from datasets.oscd_datamodule import ChangeDetectionDataModule
 from models.segmentation import get_segmentation_model
 # from models.moco2_module import MocoV2
+from lightning.pytorch.callbacks.early_stopping import EarlyStopping
 
 
 def get_args():
@@ -24,14 +25,15 @@ def get_args():
     parser.add_argument('--data_dir', type=str)
     parser.add_argument('--resnet_type', type=int, default=18)
     parser.add_argument('--init_type', type=str, default='random')
-    parser.add_argument('--ckp_path', type=str, default=None)
-    parser.add_argument('--load_ckp_path', dest='ckp', type=str, default=None)
+    parser.add_argument('--ckp_pretrain', type=str, default=None)
+    parser.add_argument('--ckp_resume', type=str, default=None)
     parser.add_argument('--n_channels', dest='nc', type=int, default=3)
     parser.add_argument('--n_epochs', dest='ne', type=int, default=100)
     parser.add_argument('--learning_rate', dest='lr', type=float, default=0.001)
+    parser.add_argument('--value_discard', type=bool, default=True)
     parser.add_argument('--patch_size', type=int, default=96)
     parser.add_argument('--batch_size', type=int, default=32)
-    parser.add_argument('--m_threshold', dest='mth', type=float, default=0.45)
+    parser.add_argument('--m_threshold', dest='mth', type=float, default=0.5)
     parser.add_argument('--result_dir', type=str)
     
     args = parser.parse_args()
@@ -45,19 +47,19 @@ class SiamSegment(LightningModule):
         super().__init__()
         self.model = get_segmentation_model(backbone, feature_indices, feature_channels)
         self.criterion = BCEWithLogitsLoss()
-        self.prec = Precision(threshold=args.mth)
-        self.rec = Recall(threshold=args.mth) 
-        self.f1 = F1Score(threshold=args.mth) 
+        self.prec = Precision(task='binary',threshold=args.mth)
+        self.rec = Recall(task='binary',threshold=args.mth) 
+        self.f1 = F1Score(task='binary',threshold=args.mth) 
 
     def forward(self, x1, x2):
         return self.model(x1, x2)
 
     def training_step(self, batch, batch_idx):
         img_1, img_2, mask, pred, loss, prec, rec, f1 = self.shared_step(batch)
-        self.log('train/loss', loss, prog_bar=True)
-        self.log('train/precision', prec, on_step=False, on_epoch=True, prog_bar=True)
-        self.log('train/recall', rec, on_step=False, on_epoch=True, prog_bar=True)
-        self.log('train/f1', f1, on_step=False, on_epoch=True, prog_bar=True)
+        self.log('train/loss', loss, prog_bar=True,sync_dist=True)
+        self.log('train/precision', prec, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
+        self.log('train/recall', rec, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
+        self.log('train/f1', f1, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
         tensorboard = self.logger.experiment
         global_step = self.trainer.global_step
         if args.nc == 3:
@@ -74,10 +76,10 @@ class SiamSegment(LightningModule):
 
     def validation_step(self, batch, batch_idx):
         img_1, img_2, mask, pred, loss, prec, rec, f1 = self.shared_step(batch)
-        self.log('val/loss', loss, prog_bar=True)
-        self.log('val/precision', prec, on_step=False, on_epoch=True, prog_bar=True)
-        self.log('val/recall', rec, on_step=False, on_epoch=True, prog_bar=True)
-        self.log('val/f1', f1, on_step=False, on_epoch=True, prog_bar=True)
+        self.log('val/loss', loss, prog_bar=True,sync_dist=True)
+        self.log('val/precision', prec, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
+        self.log('val/recall', rec, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
+        self.log('val/f1', f1, on_step=False, on_epoch=True, prog_bar=True,sync_dist=True)
         tensorboard = self.logger.experiment
         global_step = self.trainer.global_step
         if args.nc == 3:
@@ -139,8 +141,11 @@ if __name__ == '__main__':
     args = get_args()
 
     # dataloader
-    assert(args.nc==3 or args.nc==13)
+    assert(args.nc==3 or args.nc==13 or args.nc==12)
     datamodule = ChangeDetectionDataModule(args.data_dir, RGB_bands=True if args.nc==3 else False, \
+                                           BGR_bands=False, \
+                                           S2A_bands=True if args.nc==12 else False, \
+                                           value_discard=args.value_discard, \
                                            patch_size=args.patch_size, batch_size=args.batch_size)
 
     # construct backbone model
@@ -158,7 +163,7 @@ if __name__ == '__main__':
         feature_channels=(64, 256, 512, 1024, 2048)
     else:
         raise ValueError()
-    print(f'Construct the backbone of resnet{args.resnet_type}.')
+    print(f'Construct the backbone of resnet{args.resnet_type}-initialization: {args.init_type}.')
     
     # change the number of input channels of backbone
     if args.nc != 3:
@@ -170,17 +175,21 @@ if __name__ == '__main__':
             param.requires_grad = False 
     
     # load ckp if given
-    if args.ckp_path:
-        backbone = load_ssl_resnet_encoder(backbone, args.ckp_path)
-        args.init_type = 'ssl'
+    if args.ckp_pretrain:
+        backbone = load_ssl_resnet_encoder(backbone, args.ckp_pretrain)
+        # args.init_type = 'ssl'
 
     model = SiamSegment(backbone, feature_indices=(2, 4, 5, 6, 7), feature_channels=feature_channels)
     # model.example_input_array = (torch.zeros((1, 3, 96, 96)), torch.zeros((1, 3, 96, 96)))
+    model.eval()
 
     experiment_name = args.init_type
     logger = TensorBoardLogger(save_dir=str(Path.cwd() / args.result_dir / 'logs'), name=experiment_name)
     dir_path=str(Path.cwd() / args.result_dir / 'ckps' / args.init_type)
     Path(dir_path).mkdir(parents=True, exist_ok=True)
-    checkpoint_callback = ModelCheckpoint(dirpath=dir_path,filename='{epoch}', save_weights_only=True)
-    trainer = Trainer(gpus=args.gpus, logger=logger, callbacks=[checkpoint_callback], max_epochs=args.ne, weights_summary='top')
-    trainer.validate(model, ckpt_path=args.ckp, datamodule=datamodule)
+    checkpoint_callback = ModelCheckpoint(dirpath=dir_path, auto_insert_metric_name=True, save_weights_only=True)
+    early_stop_callback = EarlyStopping(monitor="val_loss", mode="min")
+    trainer = Trainer(accelerator='gpu', devices=1, enable_progress_bar=True, inference_mode=True)
+    #trainer.fit(model, datamodule=datamodule)
+    trainer.validate(model, ckpt_path=args.ckp_resume, datamodule=datamodule)
+    #trainer.test(dataloaders=test_dataloaders)

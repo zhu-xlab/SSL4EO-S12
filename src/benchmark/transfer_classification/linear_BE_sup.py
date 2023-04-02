@@ -65,6 +65,8 @@ parser.add_argument("--local_rank", default=0, type=int,
 
 parser.add_argument('--normalize',action='store_true',default=False)
 parser.add_argument('--linear',action='store_true',default=False)
+parser.add_argument('--pretrain_style',default=None,type=str,choices=['reinit','pad',None])
+
 
 def init_distributed_mode(args):
 
@@ -228,16 +230,43 @@ def main():
     ## change 04 ##
     if args.backbone == 'resnet50':
         net = models.resnet50(pretrained=False)
-        net.fc = torch.nn.Linear(2048,19)
     elif args.backbone == 'resnet18':
         net = models.resnet18(pretrained=False)
-        net.fc = torch.nn.Linear(512,19)
         
+    if args.pretrain_style == 'reinit':
+        print("=> loading checkpoint '{}'".format(args.pretrained))
+        state_dict = torch.load(args.pretrained, map_location="cpu")
+        msg = net.load_state_dict(state_dict, strict=False)
+        #assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
+        print("=> loaded pre-trained model '{}'".format(args.pretrained))        
+         
     if args.bands=='all':
         net.conv1 = torch.nn.Conv2d(13, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
     elif args.bands=='B12':
         net.conv1 = torch.nn.Conv2d(12, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
     
+    # load from pre-trained, before DistributedDataParallel constructor
+    if args.pretrain_style == 'pad':
+        print("=> loading checkpoint '{}'".format(args.pretrained))
+        state_dict = torch.load(args.pretrained, map_location="cpu")
+        new_conv1_weight = torch.zeros((64,12,7,7)) # 64,12,7,7
+        # B10 init with 0
+        new_conv1_weight[:,1,:,:] = state_dict['conv1.weight'][:,2,:,:]
+        new_conv1_weight[:,2,:,:] = state_dict['conv1.weight'][:,1,:,:]
+        new_conv1_weight[:,3,:,:] = state_dict['conv1.weight'][:,0,:,:]
+        
+        state_dict['conv1.weight'] = new_conv1_weight
+
+        msg = net.load_state_dict(state_dict, strict=False)
+        #assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
+        print("=> loaded pre-trained model '{}'".format(args.pretrained))
+
+
+    if args.backbone == 'resnet50':
+        net.fc = torch.nn.Linear(2048,19)
+    elif args.backbone == 'resnet18':
+        net.fc = torch.nn.Linear(512,19)   
+
     if args.linear:
         for name, param in net.named_parameters():
             if name not in ['fc.weight','fc.bias']:
@@ -245,38 +274,6 @@ def main():
 
         net.fc.weight.data.normal_(mean=0.0,std=0.01)
         net.fc.bias.data.zero_()
-
-
-    # load from pre-trained, before DistributedDataParallel constructor
-    if args.pretrained:
-        if os.path.isfile(args.pretrained):
-            print("=> loading checkpoint '{}'".format(args.pretrained))
-            checkpoint = torch.load(args.pretrained, map_location="cpu")
-
-            # rename moco pre-trained keys
-            state_dict = checkpoint['state_dict']
-            #print(state_dict.keys())
-            for k in list(state_dict.keys()):
-                # retain only encoder up to before the embedding layer
-                if k.startswith('module.encoder_q') and not k.startswith('module.encoder_q.fc'):
-                    #pdb.set_trace()
-                    # remove prefix
-                    state_dict[k[len("module.encoder_q."):]] = state_dict[k]
-                # delete renamed or unused k
-                del state_dict[k]
-            
-            '''
-            # remove prefix
-            state_dict = {k.replace("module.", ""): v for k,v in state_dict.items()}
-            '''
-            #args.start_epoch = 0
-            msg = net.load_state_dict(state_dict, strict=False)
-            #pdb.set_trace()
-            assert set(msg.missing_keys) == {"fc.weight", "fc.bias"}
-
-            print("=> loaded pre-trained model '{}'".format(args.pretrained))
-        else:
-            print("=> no checkpoint found at '{}'".format(args.pretrained))
 
     # convert batch norm layers (if any)
     if args.is_slurm_job:

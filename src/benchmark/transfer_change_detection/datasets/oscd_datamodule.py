@@ -8,6 +8,7 @@ from datasets.oscd_dataset import ChangeDetectionDataset
 
 
 ALL_BANDS = ['B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08', 'B8A', 'B09', 'B10', 'B11', 'B12']
+S2A_BANDS = ['B01', 'B02', 'B03', 'B04', 'B05', 'B06', 'B07', 'B08', 'B8A', 'B09', 'B11', 'B12']
 RGB_BANDS = ['B04', 'B03', 'B02']
 BGR_BANDS = ['B02', 'B03', 'B04']
 
@@ -57,16 +58,23 @@ class Compose:
 
 class ChangeDetectionDataModule(LightningDataModule):
 
-    def __init__(self, data_dir, RGB_bands=True, BGR_bands=False, 
+    def __init__(self, data_dir, RGB_bands=True, BGR_bands=False, S2A_bands=False,
                  value_discard=True, patch_size=96, batch_size=32):
         super().__init__()
         self.data_dir = data_dir
         self.patch_size = patch_size
         self.batch_size = batch_size
         self.value_discard = value_discard
-        self.bands = RGB_BANDS if RGB_bands else ALL_BANDS
         if RGB_bands:
-            if BGR_bands: self.bands = BGR_BANDS 
+            if BGR_bands:
+                self.bands = BGR_BANDS 
+            else:
+                self.bands = RGB_BANDS
+        elif S2A_bands:
+            self.bands = S2A_BANDS
+        else:
+            self.bands = ALL_BANDS
+            
 
     def setup(self, stage=None):
         self.train_dataset = ChangeDetectionDataset(
@@ -99,9 +107,9 @@ class ChangeDetectionDataModule(LightningDataModule):
     def val_dataloader(self):
         return DataLoader(
             self.val_dataset,
-            batch_size=self.batch_size,
+            batch_size=274,
             shuffle=False, # True,
-            num_workers=8,
-            drop_last=True,
+            num_workers=0,
+            drop_last=False,
             pin_memory=True
         )
