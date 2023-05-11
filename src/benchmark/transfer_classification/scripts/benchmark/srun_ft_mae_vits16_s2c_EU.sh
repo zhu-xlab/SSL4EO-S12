@@ -4,10 +4,10 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=4
 #SBATCH --ntasks-per-node=4
-#SBATCH --output=srun_outputs/classification/BE_mae_FT_vits16_10_%j.out
-#SBATCH --error=srun_outputs/classification/BE_mae_FT_vits16_10_%j.err
+#SBATCH --output=srun_outputs/classification/EU_mae_FT_vits16_70_lr1_decay_%j.out
+#SBATCH --error=srun_outputs/classification/EU_mae_FT_vits16_70_lr1_decay_%j.err
 #SBATCH --time=02:00:00
-#SBATCH --job-name=BE_FT_mae_vits16
+#SBATCH --job-name=EU_LC_mae_vits16
 #SBATCH --gres=gpu:4
 #SBATCH --cpus-per-task=10
 #SBATCH --partition=booster
@@ -30,21 +30,23 @@ source /p/project/hai_dm4eo/wang_yi/env2/bin/activate
 export CUDA_VISIBLE_DEVICES=0,1,2,3
 
 # run script as slurm job
-srun python -u linear_BE_mae.py \
+srun python -u linear_EU_mae.py \
 --is_slurm_job \
---data_path /p/scratch/hai_ssl4eo/data/bigearthnet/BigEarthNet_LMDB_uint8 \
---output_dir /p/project/hai_ssl4eo/wang_yi/ssl4eo-s12-dataset/src/benchmark/fullset_temp/checkpoints/mae_ft/BE_vits16_10 \
---log_dir /p/project/hai_ssl4eo/wang_yi/ssl4eo-s12-dataset/src/benchmark/fullset_temp/checkpoints/mae_ft/BE_vits16_10/log \
+--data_path /p/scratch/hai_ssl4eo/data/eurosat/tif \
+--output_dir /p/project/hai_ssl4eo/nassim/ssl-sentinel/src/benchmark/fullset_temp/checkpoints/mae_ft/EU_vits16_lr1_decay \
+--log_dir /p/project/hai_ssl4eo/nassim/ssl-sentinel/src/benchmark/fullset_temp/checkpoints/mae_ft/EU_vits16_lr1_decay/log \
 --model vit_small_patch16 \
---nb_classes 19 \
---train_frac 0.1 \
+--nb_classes 10 \
+--train_frac 1.0 \
 --num_workers 10 \
 --batch_size 64 \
 --epochs 100 \
---lr 1 \
---warmup_epochs 0 \
+--lr 0.1 \
+--weight_decay 0.0001 \
+--warmup_epochs 10 \
 --dist_url $dist_url \
 --dist_backend 'nccl' \
 --seed 42 \
 --finetune /p/project/hai_ssl4eo/wang_yi/ssl4eo-s12-dataset/src/benchmark/fullset_temp/checkpoints/mae/B13_vits16_70/checkpoint-99.pth \
 --fine_tune \
+
