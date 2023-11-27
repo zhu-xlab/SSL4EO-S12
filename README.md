@@ -1,5 +1,5 @@
 # SSL4EO-S12
-The SSL4EO-S12 dataset is a large-scale multimodal multitemporal dataset for unsupervised/self-supervised pre-training in Earth observation. The dataset consists of unlabeled patch triplets (Sentinel-1 dual-pol SAR, Sentinel-2 top-of-atmosphere multispectral, Sentinel-2 surface reflectance multispectral) from 251079 locations across the globe, each patch covering 2640mx2640m and including four seasonal time stamps.
+The [SSL4EO-S12 dataset](https://arxiv.org/abs/2211.07044) is a large-scale multimodal multitemporal dataset for unsupervised/self-supervised pre-training in Earth observation. The dataset consists of unlabeled patch triplets (Sentinel-1 dual-pol SAR, Sentinel-2 top-of-atmosphere multispectral, Sentinel-2 surface reflectance multispectral) from 251079 locations across the globe, each patch covering 2640mx2640m and including four seasonal time stamps.
 
 ![ssl4eo-s12](assets/hello.png)
 
