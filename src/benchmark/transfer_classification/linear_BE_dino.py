@@ -80,7 +80,7 @@ def eval_linear(args):
     # ============ preparing data ... ============
 
     train_transform = cvtransforms.Compose([
-        cvtransforms.RandomResizedCrop(224),
+        cvtransforms.RandomResizedCrop(224, scale=(0.8,1.0)),
         cvtransforms.RandomHorizontalFlip(),
         cvtransforms.ToTensor(),
         #cvtransforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
