@@ -11,7 +11,7 @@ The [SSL4EO-S12 dataset](https://arxiv.org/abs/2211.07044) is a large-scale mult
 
 **Updates**
 - We've got some feedback that the connection to the raw data at mediaTUM server is unstable and slow for some regions. For more convenient access, we plan to host a copy of the data in HuggingFace. Note that only the original data in mediaTUM has a proper DOI. ([S2_L1C is now available!](https://huggingface.co/datasets/wangyi111/SSL4EO-S12/tree/main/s2_l1c))
-- We've got some feedback that the compressed dataset (with JPEG compression) has a performance drop compared to the raw data, which could be because of the lossy compression. We plan to update it with a lossless version (yet the file size will increase). Also, do you have INode (number of single files) limit on your server? We could consider updating one resampled GeoTiff for all bands (as in [SSL4EO-L](https://arxiv.org/abs/2306.09424)) If you have any issues or wish for updates, let us know!
+- We've got some feedback that the compressed dataset (with JPEG compression) has a performance drop compared to the raw data, which could be because of the lossy compression. We plan to update it with a lossless version (yet the file size will increase). Also, do you have INode (number of single files) limit on your server? We could consider updating one resampled GeoTiff for all bands (as in [SSL4EO-L](https://arxiv.org/abs/2306.09424)). If you have any issues or wish for updates, let us know!
 
 ### Collect your own data
 Check [`src/download_data`](src/download_data) for instructions to download sentinel or other products from Google Earth Engine.
