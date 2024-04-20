@@ -10,7 +10,7 @@ The [SSL4EO-S12 dataset](https://arxiv.org/abs/2211.07044) is a large-scale mult
 - [ ] A 50k (random) RGB subset (18GB) is available here (link broken). Sample IDs see `data/50k_ids_random.csv`.
 
 **Updates**
-- We've got some feedback that the connection to the raw data at mediaTUM server is unstable and slow for some regions. For more convenient access, we plan to host a copy of the data in HuggingFace. Note that only the original data in mediaTUM has a proper DOI. ([S2_L1C is now available!](https://huggingface.co/datasets/wangyi111/SSL4EO-S12/tree/main/s2_l1c))
+- For faster access in some regions, we have hosted a copy of the data in [HuggingFace](https://huggingface.co/datasets/wangyi111/SSL4EO-S12). Note that only the original data in mediaTUM has a proper DOI.
 - We've got some feedback that the compressed dataset (with JPEG compression) has a performance drop compared to the raw data, which could be because of the lossy compression. We plan to update it with a lossless version (yet the file size will increase). Also, do you have INode (number of single files) limit on your server? We could consider updating one resampled GeoTiff for all bands (as in [SSL4EO-L](https://arxiv.org/abs/2306.09424)). If you have any issues or wish for updates, let us know!
 
 ### Collect your own data
