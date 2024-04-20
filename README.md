@@ -30,7 +30,7 @@ The pre-trained models with different SSL methods are provided as follows (13 ba
 |     [MAE](https://github.com/facebookresearch/mae)    | ViT-S/16 |    [88.9%](src/benchmark/transfer_classification/scripts/benchmark/srun_ft_mae_vits16_s2c_BE.sh)    |  [98.7%](src/benchmark/transfer_classification/scripts/benchmark/srun_ft_mae_vits16_s2c_EU.sh)  |     [63.9%](src/benchmark/transfer_classification/scripts/benchmark/srun_ft_mae_vits16_s2c_SS.sh)    |    [full ckpt](https://drive.google.com/file/d/1QTBKl1asxgQCNd6bO2azXZNPfoQ3Sazv/view?usp=sharing)   | [backbone](https://drive.google.com/file/d/1hdie-7orFnj5Q1E1C2BudqwQCvMk3Fza/view?usp=sharing) | [logs](https://drive.google.com/file/d/1uJojq9q_fKMdD6cO1YXCPguZYEmfj35s/view?usp=sharing) | [define model](https://github.com/zhu-xlab/SSL4EO-S12/blob/1a668f76fd46762a19780293675a6e23e5204e72/src/benchmark/transfer_classification/linear_BE_mae.py#L232-L236), [load weights](https://github.com/zhu-xlab/SSL4EO-S12/blob/1a668f76fd46762a19780293675a6e23e5204e72/src/benchmark/transfer_classification/linear_BE_mae.py#L238-L259) |
 |  [Data2vec](https://github.com/facebookresearch/fairseq/tree/main/examples/data2vec)  | ViT-S/16 |    [90.3%](src/benchmark/transfer_classification/scripts/benchmark/ft_data2vec_vit16_s2c_BE_100.sh)    |  [99.1%](src/benchmark/transfer_classification/scripts/benchmark/ft_data2vec_vits16_s2c_EU_100.sh)  |     [64.8%](src/benchmark/transfer_classification/scripts/benchmark/lc_data2vec_vits16_s2c_SS_100.sh)    | [full ckpt](https://drive.google.com/file/d/1VbIGBwzZYndv4v1vx9FiD6IP-YwsHEns/view?usp=sharing) | [backbone](https://drive.google.com/file/d/1YecuYPAxl1NIzLmsmdbUROjCb5g0t80l/view?usp=sharing) | logs | [define model](https://github.com/zhu-xlab/SSL4EO-S12/blob/1a668f76fd46762a19780293675a6e23e5204e72/src/benchmark/transfer_classification/linear_BE_data2vec.py#L372-L390), [load weights](https://github.com/zhu-xlab/SSL4EO-S12/blob/1a668f76fd46762a19780293675a6e23e5204e72/src/benchmark/transfer_classification/linear_BE_data2vec.py#L406-L553) |
 
-\* Note the results for BigEarthNet are based on the train/val split following [SeCo](https://github.com/ServiceNow/seasonal-contrast/blob/8285173ec205b64bc3e53b880344dd6c3f79fa7a/datasets/bigearthnet_dataset.py#L119).
+\* Note the results for BigEarthNet are based on the train/val split following [SeCo](https://github.com/ServiceNow/seasonal-contrast/blob/8285173ec205b64bc3e53b880344dd6c3f79fa7a/datasets/bigearthnet_dataset.py#L119) and [In-domain representation learning for RS](https://github.com/google-research/google-research/tree/master/remote_sensing_representations).
 
 Other pre-trained models:
 
@@ -48,6 +48,7 @@ Other pre-trained models:
 |     |        ViT-L/16 | S2-L1C 13 bands | [full ckpt](https://huggingface.co/wangyi111/SSL4EO-S12/resolve/main/B13_vitl16_mae_ep99.pth) | backbone |
 |     |        ViT-H/14 | S2-L1C 13 bands | [full ckpt](https://huggingface.co/wangyi111/SSL4EO-S12/resolve/main/B13_vith14_mae_ep199.pth) | backbone |
 
+**\* The pretrained models are also available in [TorchGeo](https://github.com/microsoft/torchgeo).**
 
 ### License
 This repository is released under the Apache 2.0 license. The dataset and pretrained model weights are released under the CC-BY-4.0 license.
